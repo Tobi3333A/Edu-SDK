@@ -1,5 +1,6 @@
 import { generateText, Output } from 'ai';
 import { z } from 'zod';
+import { type Difficulty } from './shared/types.js';
 
 
 export type Flashcard = {
@@ -12,7 +13,7 @@ export type Flashcards = Flashcard[]
 export type CreateFlashcardsOptions = {
     content: string;
     model: string;
-    difficulty?: 'easy' | 'medium' | 'hard',
+    difficulty?: Difficulty,
     count: number
 }
 
