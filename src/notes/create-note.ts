@@ -1,13 +1,10 @@
 import { generateText, Output } from "ai";
 import { z } from 'zod';
-import type { Difficulty } from "../shared/types.js";
+import type { GenerationOptions } from "../shared/types.js";
 
 export type NoteLength = 'short' | 'medium' | 'long';
 
-export type CreateNoteOptions = {
-    model: string;
-    content: string;
-    difficulty?: Difficulty;
+export type CreateNoteOptions = GenerationOptions & {
     length?: NoteLength
 }
 

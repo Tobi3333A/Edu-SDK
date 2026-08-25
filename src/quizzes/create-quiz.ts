@@ -1,6 +1,6 @@
 import { generateText, Output } from "ai";
 import { z } from 'zod';
-import type { Difficulty } from "../shared/types.js";
+import type { GenerationOptions } from "../shared/types.js";
 
 export type QuizQuestion = {
     question: string;
@@ -10,11 +10,8 @@ export type QuizQuestion = {
 
 export type Quiz = QuizQuestion[]
 
-export type CreateQuizOptions = {
-    model: string;
-    content: string;
+export type CreateQuizOptions = GenerationOptions & {
     count: number;
-    difficulty?: Difficulty
     numOfOptions?: number
 }
 
