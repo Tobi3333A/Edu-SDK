@@ -18,5 +18,9 @@
   },
   "devDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "ai": "^7.0.79",
+    "zod": "^4.4.3"
   }
 }
