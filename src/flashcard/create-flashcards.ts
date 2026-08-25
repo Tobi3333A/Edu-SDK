@@ -1,30 +1,33 @@
 import { generateText, Output } from 'ai';
 import { z } from 'zod';
-import { GenerationOptions } from '../shared/types.js';
+import { generationOptionsSchema } from '../shared/schema.js';
 
+const createFlashcardsOptionsSchema = generationOptionsSchema.extend({
+    count: z.number().int().positive()
+});
 
-export type Flashcard = {
-    front: string;
-    back: string;
-};
+const flashcardSchema = z.object({
+    front: z.string().min(1).describe('The front part of the flashcard'),
+    back: z.string().min(1).describe('The back part of the flashcard')
+});
 
-export type Flashcards = Flashcard[]
+export type Flashcard = z.infer<typeof flashcardSchema>;
+type Flashcards = Flashcard[]
 
-export type CreateFlashcardsOptions = GenerationOptions & {
-    count: number
-}
+export type CreateFlashcardsOptions = z.infer<typeof createFlashcardsOptionsSchema>;
 
-export async function createFlashcards({ content, model, difficulty = 'medium', count }: CreateFlashcardsOptions): Promise<Flashcards> {
-   const { output }  = await generateText({
+export async function createFlashcards(options: CreateFlashcardsOptions): Promise<Flashcards> {
+    const { model, content, count, difficulty = 'medium' } = createFlashcardsOptionsSchema.parse(options);
+
+    const { output }  = await generateText({
         model,
         prompt: `Create ${count} flashcards from this content: ${content} and with this difficulty level: ${difficulty}`,
-        output: Output.array({
-            element: z.object({
-                front: z.string().describe('The front part of a flash card'),
-                back: z.string().describe('The back part of a flash card')
+        output: Output.object({
+            schema: z.object({
+                cards: z.array(flashcardSchema).length(count)
             })
         })
    });
 
-   return output;
+   return output.cards;
 }

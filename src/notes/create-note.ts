@@ -1,18 +1,22 @@
 import { generateText, Output } from "ai";
 import { z } from 'zod';
-import type { GenerationOptions } from "../shared/types.js";
+import { generationOptionsSchema } from "../shared/schema.js";
 
-export type NoteLength = 'short' | 'medium' | 'long';
+const createNoteOptionsSchema = generationOptionsSchema.extend({
+    length: z.enum(['short', 'medium', 'long']).optional()
+});
 
-export type CreateNoteOptions = GenerationOptions & {
-    length?: NoteLength
-}
+export type CreateNoteOptions = z.infer<typeof createNoteOptionsSchema>;
 
-export type Note = {
-    content: string
-}
+const noteSchema = z.object({
+    content: z.string().min(1).describe('The content of the notes in markdown')
+});
 
-export async function createNote({ model, content, difficulty = 'medium', length = 'medium' }: CreateNoteOptions): Promise<Note> {
+export type Note = z.infer<typeof noteSchema>;
+
+export async function createNote(options: CreateNoteOptions): Promise<Note> {
+    const { model, content, difficulty = 'medium', length = 'medium' } = createNoteOptionsSchema.parse(options);
+
     const { output } = await generateText({
         model,
         prompt: `
@@ -26,9 +30,7 @@ Content:
 ${content}
     `,
         output: Output.object({
-            schema: z.object({
-                content: z.string()
-            })
+            schema: noteSchema
         })
     });
 
