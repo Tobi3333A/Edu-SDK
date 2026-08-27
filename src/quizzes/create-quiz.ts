@@ -2,7 +2,7 @@ import { generateText, Output } from "ai";
 import { z } from 'zod';
 import { generationOptionsSchema } from "../shared/schema.js";
 
-const createQuizOptionsSchema = generationOptionsSchema.extend({
+export const createQuizOptionsSchema = generationOptionsSchema.extend({
     count: z.number().int().positive(),
     numOfOptions: z.number().int().min(2).optional()
 });

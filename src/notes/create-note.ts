@@ -2,7 +2,7 @@ import { generateText, Output } from "ai";
 import { z } from 'zod';
 import { generationOptionsSchema } from "../shared/schema.js";
 
-const createNoteOptionsSchema = generationOptionsSchema.extend({
+export const createNoteOptionsSchema = generationOptionsSchema.extend({
     length: z.enum(['short', 'medium', 'long']).optional()
 });
 
