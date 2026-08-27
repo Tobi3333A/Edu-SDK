@@ -2,7 +2,7 @@ import { generateText, Output } from 'ai';
 import { z } from 'zod';
 import { generationOptionsSchema } from '../shared/schema.js';
 
-const createFlashcardsOptionsSchema = generationOptionsSchema.extend({
+export const createFlashcardsOptionsSchema = generationOptionsSchema.extend({
     count: z.number().int().positive()
 });
 
