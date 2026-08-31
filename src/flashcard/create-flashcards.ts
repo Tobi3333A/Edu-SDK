@@ -1,6 +1,7 @@
 import { generateText, Output } from 'ai';
 import { z } from 'zod';
 import { generationOptionsSchema } from '../shared/schema.js';
+import { InvalidInputError } from '../errors/errors.js';
 
 export const createFlashcardsOptionsSchema = generationOptionsSchema.extend({
     count: z.number().int().positive()
@@ -17,7 +18,12 @@ type Flashcards = Flashcard[]
 export type CreateFlashcardsOptions = z.infer<typeof createFlashcardsOptionsSchema>;
 
 export async function createFlashcards(options: CreateFlashcardsOptions): Promise<Flashcards> {
-    const { model, content, count, difficulty = 'medium' } = createFlashcardsOptionsSchema.parse(options);
+    const result = createFlashcardsOptionsSchema.safeParse(options);
+    if (!result.success) {
+        throw new InvalidInputError(result.error.issues[0]?.message ?? "Invalid flashcard generation options");
+    }
+    
+    const { model, content, count, difficulty = 'medium' } = result.data;
 
     const { output }  = await generateText({
         model,

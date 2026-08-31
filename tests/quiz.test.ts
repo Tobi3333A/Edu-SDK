@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, test, vi } from "vitest";
 import { generateText } from "ai";
 import { createQuizOptionsSchema, createQuiz } from '../src/quizzes/create-quiz';
+import { InvalidInputError } from "../src/errors/errors";
 
 vi.mock(import('ai'), async (importOriginal) => {
     const actual = await importOriginal();
@@ -184,5 +185,15 @@ describe('createQuiz', () => {
                 prompt: expect.stringContaining("4 answer choices")
             })
         );
+    });
+});
+
+describe('error handling', () => {
+    test('throws InvalidInputError for invalid generation options', async () => {
+        await expect(createQuiz({
+            model: 'google/gemini-3.6-flash',
+            content: '',
+            count: 4
+        })).rejects.toBeInstanceOf(InvalidInputError);
     });
 });

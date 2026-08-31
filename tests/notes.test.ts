@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { generateText } from 'ai';
 import { createNote, createNoteOptionsSchema } from '../src/notes/create-note';
+import { InvalidInputError } from '../src/errors/errors';
 
 vi.mock(import('ai'), async(importOriginal) => {
     const actual = await importOriginal();
@@ -65,6 +66,16 @@ describe('createNote', () => {
         );
     });
 
+    test('does not call generateText for invalid input', async () => {
+        await expect(createNote({
+            model: 'google/gemini-3.6-flash',
+            content: '',
+            length: 'long'
+        })).rejects.toThrow();
+
+        expect(mockedGenerateText).not.toHaveBeenCalled();
+    });
+
     test('uses length', async () => {
         await createNote({
             model: 'google/gemini-3.6-flash',
@@ -110,5 +121,14 @@ describe('createNote', () => {
                 prompt: expect.stringContaining("medium length")
             })
         );
+    });
+});
+
+describe('error handling', () => {
+    test('throws InvalidInputError for invalid generation options', async () => {
+        await expect(createNote({
+            model: 'google/gemini-3.6-flash',
+            content: "",
+        })).rejects.toBeInstanceOf(InvalidInputError);
     });
 });
