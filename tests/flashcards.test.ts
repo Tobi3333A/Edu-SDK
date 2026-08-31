@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { generateText } from 'ai';
 import { createFlashcardsOptionsSchema, createFlashcards } from '../src/flashcard/create-flashcards';
+import { InvalidInputError } from '../src/errors/errors';
 
 vi.mock(import('ai'), async(importOriginal) => {
     const actual = await importOriginal();
@@ -126,5 +127,15 @@ describe('createFlashcards', () => {
                 prompt: expect.stringContaining("level: medium")
             })
         );
+    });
+});
+
+describe('error handling', () => {
+    test('throws InvalidInputError for invalid generation options', async () => {
+        await expect(createFlashcards({
+            model: 'google/gemini-3.6-flash',
+            content: '',
+            count: 4
+        })).rejects.toBeInstanceOf(InvalidInputError);
     });
 });
