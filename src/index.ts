@@ -8,3 +8,5 @@ export { createQuiz } from './quizzes/create-quiz.js';
 export type { Quiz, QuizQuestion, CreateQuizOptions } from './quizzes/create-quiz.js';
 
 export type { Difficulty } from './shared/schema.js';
+
+export { EduSDKError, InvalidInputError } from './errors/errors.js';
