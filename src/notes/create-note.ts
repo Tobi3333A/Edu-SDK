@@ -1,4 +1,4 @@
-import { generateText, Output } from "ai";
+import { generateText } from "ai";
 import { z } from 'zod';
 import { generationOptionsSchema } from "../shared/schema.js";
 
@@ -8,16 +8,14 @@ export const createNoteOptionsSchema = generationOptionsSchema.extend({
 
 export type CreateNoteOptions = z.infer<typeof createNoteOptionsSchema>;
 
-const noteSchema = z.object({
-    content: z.string().min(1).describe('The content of the notes in markdown')
-});
+const noteSchema = z.string().min(1).describe('The content of the notes in markdown');
 
 export type Note = z.infer<typeof noteSchema>;
 
 export async function createNote(options: CreateNoteOptions): Promise<Note> {
     const { model, content, difficulty = 'medium', length = 'medium' } = createNoteOptionsSchema.parse(options);
 
-    const { output } = await generateText({
+    const { text } = await generateText({
         model,
         prompt: `
 Create a ${difficulty}-difficulty note of approximately ${length} length
@@ -28,11 +26,8 @@ Use headings to organize sections and bold important terms and concepts.
 
 Content:
 ${content}
-    `,
-        output: Output.object({
-            schema: noteSchema
-        })
+    `
     });
 
-    return output
+    return text;
 }

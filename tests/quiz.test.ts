@@ -1,5 +1,16 @@
-import { describe, expect, test } from "vitest";
-import { createQuizOptionsSchema } from '../src/quizzes/create-quiz';
+import { beforeEach, describe, expect, test, vi } from "vitest";
+import { generateText } from "ai";
+import { createQuizOptionsSchema, createQuiz } from '../src/quizzes/create-quiz';
+
+vi.mock(import('ai'), async (importOriginal) => {
+    const actual = await importOriginal();
+    return {
+        ...actual,
+        generateText: vi.fn()
+    }
+});
+
+const mockedGenerateText = vi.mocked(generateText);
 
 describe('createQuizOptionsSchema', () => {
     test('rejects a question count of zero', () => {
@@ -21,7 +32,7 @@ describe('createQuizOptionsSchema', () => {
         expect(result.success).toBe(false);
     });
 
-    test('rejects an invalid diffiulty level', () => {
+    test('rejects an invalid difficulty level', () => {
         const result = createQuizOptionsSchema.safeParse({
             model: 'google/gemini-3.6-flash',
             content: 'Electricity',
@@ -39,5 +50,139 @@ describe('createQuizOptionsSchema', () => {
             numOfOptions: 4,
         });
         expect(result.success).toBe(true);
+    });
+});
+
+describe('createQuiz', () => {
+    const questions = [
+        {
+            question: "What is voltage?",
+            options: [
+                "Electrical potential difference",
+                "Electrical resistance",
+                "Electrical current",
+                "Electrical power"
+            ],
+            correctAnswer: 0
+        },
+        {
+            question: "What is the unit of current?",
+            options: [
+                "Volt",
+                "Ampere",
+                "Ohm",
+                "Watt"
+            ],
+            correctAnswer: 1
+        }
+    ];
+
+    beforeEach(() => {
+        mockedGenerateText.mockReset();
+        mockedGenerateText.mockResolvedValue({
+            output: { questions }
+        } as any);
+    });
+
+    test('returns generated quiz questions', async () => {
+        const result = await createQuiz({
+            model: 'google/gemini-3.6-flash',
+            content: 'Electricity',
+            count: 2,
+            numOfOptions: 4
+        });
+
+        expect(result).toEqual(questions);
+    });
+
+    test('does not call generateText for invalid input', async () => {
+        await expect(createQuiz({
+            model: 'google/gemini-3.6-flash',
+            content: 'Electricity',
+            count: 0
+        })).rejects.toThrow();
+
+        expect(mockedGenerateText).not.toHaveBeenCalled();
+    });
+
+    test('uses the right model', async () => {
+        await createQuiz({
+            model: 'google/gemini-3.6-flash',
+            content: 'Electricity',
+            count: 2,
+        });
+
+        expect(mockedGenerateText).toHaveBeenCalledWith(
+            expect.objectContaining({
+                model: 'google/gemini-3.6-flash'
+            })
+        );
+    });
+
+    test('uses the question count', async () => {
+        await createQuiz({
+            model: 'google/gemini-3.6-flash',
+            content: 'Electricity',
+            count: 7,
+            difficulty: 'medium',
+            numOfOptions: 5
+        });
+
+        expect(mockedGenerateText).toHaveBeenCalledWith(
+            expect.objectContaining({
+                prompt: expect.stringContaining('7 questions')
+            })
+        );
+    });
+
+    test('uses the difficulty level', async () => {
+        await createQuiz({
+            model: 'google/gemini-3.6-flash',
+            content: 'Electricity',
+            count: 9,
+            difficulty: 'hard',
+            numOfOptions: 3
+        });
+
+        expect(mockedGenerateText).toHaveBeenCalledWith(
+            expect.objectContaining({
+                prompt: expect.stringContaining('hard-difficulty')
+            })
+        );
+    });
+
+    test('uses number of options', async () => {
+        await createQuiz({
+            model: 'google/gemini-3.6-flash',
+            content: 'Electricity',
+            count: 10,
+            numOfOptions: 6
+        });
+
+        expect(mockedGenerateText).toHaveBeenCalledWith(
+            expect.objectContaining({
+                prompt: expect.stringContaining('6 answer choices')
+            })
+        );
+    });
+
+    test("uses default generation options", async () => {
+        await createQuiz({
+            model: "google/gemini-3.6-flash",
+            content: "Electricity",
+            count: 2
+        });
+
+        expect(mockedGenerateText).toHaveBeenCalledWith(
+            expect.objectContaining({
+                prompt: expect.stringContaining("medium-difficulty")
+            })
+        );
+
+        expect(mockedGenerateText).toHaveBeenCalledWith(
+            expect.objectContaining({
+                prompt: expect.stringContaining("4 answer choices")
+            })
+        );
     });
 });

@@ -1,5 +1,16 @@
-import { describe, expect, test } from 'vitest';
-import { createNoteOptionsSchema } from '../src/notes/create-note';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { generateText } from 'ai';
+import { createNote, createNoteOptionsSchema } from '../src/notes/create-note';
+
+vi.mock(import('ai'), async(importOriginal) => {
+    const actual = await importOriginal();
+    return {
+        ...actual,
+        generateText: vi.fn()
+    };
+});
+
+const mockedGenerateText = vi.mocked(generateText);
 
 describe('createNotesOptionschema', () => {
     test('rejects invalid length type', () => {
@@ -20,5 +31,84 @@ describe('createNotesOptionschema', () => {
             length: 'short'
         });
         expect(result.success).toBe(true);
+    });
+});
+
+describe('createNote', () => {
+    const content = '...';
+    beforeEach(() => {
+        mockedGenerateText.mockReset();
+        mockedGenerateText.mockResolvedValue({
+            text: content
+        } as any);
+    });
+
+    test('returns generated note', async () => {
+        const result = await createNote({
+            model: 'google/gemini-3.6-flash',
+            content: 'Electricity',
+        });
+
+        expect(result).toBe(content);
+    });
+
+    test('uses the right model', async () => {
+        await createNote({
+            model: 'google/gemini-3.6-flash',
+            content: 'Electricity',
+        });
+
+        expect(mockedGenerateText).toHaveBeenCalledWith(
+            expect.objectContaining({
+                model: 'google/gemini-3.6-flash'
+            })
+        );
+    });
+
+    test('uses length', async () => {
+        await createNote({
+            model: 'google/gemini-3.6-flash',
+            content: 'Electricity',
+            length: 'long'
+        });
+
+        expect(mockedGenerateText).toHaveBeenCalledWith(
+            expect.objectContaining({
+                prompt: expect.stringContaining('long length')
+            })
+        );
+    });
+
+    test('uses difficulty level', async () => {
+        await createNote({
+            model: 'google/gemini-3.6-flash',
+            content: 'Electricity',
+            difficulty: 'hard'
+        });
+
+        expect(mockedGenerateText).toHaveBeenCalledWith(
+            expect.objectContaining({
+                prompt: expect.stringContaining('hard-difficulty')
+            })
+        );
+    });
+
+    test('uses default generation options', async () => {
+        await createNote({
+            model: "google/gemini-3.6-flash",
+            content: "Electricity",
+        });
+
+        expect(mockedGenerateText).toHaveBeenCalledWith(
+            expect.objectContaining({
+                prompt: expect.stringContaining("medium-difficulty")
+            })
+        );
+
+        expect(mockedGenerateText).toHaveBeenCalledWith(
+            expect.objectContaining({
+                prompt: expect.stringContaining("medium length")
+            })
+        );
     });
 });
