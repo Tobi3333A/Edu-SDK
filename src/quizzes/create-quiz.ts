@@ -1,6 +1,7 @@
 import { generateText, Output } from "ai";
 import { z } from 'zod';
 import { generationOptionsSchema } from "../shared/schema.js";
+import { InvalidInputError } from "../errors/errors.js";
 
 export const createQuizOptionsSchema = generationOptionsSchema.extend({
     count: z.number().int().positive(),
@@ -21,7 +22,11 @@ export type QuizQuestion = z.infer<ReturnType<typeof createQuizQuestionSchema>>;
 export type Quiz = QuizQuestion[];
 
 export async function createQuiz(options: CreateQuizOptions): Promise<Quiz> {
-    const { model, content, count, difficulty = 'medium', numOfOptions = 4 } = createQuizOptionsSchema.parse(options);
+    const result = createQuizOptionsSchema.safeParse(options);
+    if (!result.success) {
+        throw new InvalidInputError(result.error.issues[0]?.message ?? 'Invalid quiz generation options')
+    }
+    const { model, content, count, difficulty = 'medium', numOfOptions = 4 } = result.data;
 
     const quizQuestionSchema = createQuizQuestionSchema(numOfOptions);
 
