@@ -1,6 +1,7 @@
 import { generateText } from "ai";
 import { z } from 'zod';
 import { generationOptionsSchema } from "../shared/schema.js";
+import { InvalidInputError } from "../errors/errors.js";
 
 export const createNoteOptionsSchema = generationOptionsSchema.extend({
     length: z.enum(['short', 'medium', 'long']).optional()
@@ -13,7 +14,12 @@ const noteSchema = z.string().min(1).describe('The content of the notes in markd
 export type Note = z.infer<typeof noteSchema>;
 
 export async function createNote(options: CreateNoteOptions): Promise<Note> {
-    const { model, content, difficulty = 'medium', length = 'medium' } = createNoteOptionsSchema.parse(options);
+    const result = createNoteOptionsSchema.safeParse(options);
+    if (!result.success) {
+        throw new InvalidInputError(result.error.issues[0]?.message ?? "Invalid note generation options");
+    }
+
+    const { model, content, difficulty = 'medium', length = 'medium' } = result.data;
 
     const { text } = await generateText({
         model,
