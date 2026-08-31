@@ -10,6 +10,9 @@ export type { Quiz, QuizQuestion, CreateQuizOptions } from './quizzes/create-qui
 export { createStudyGuide } from './studyguide/create-studyguide.js';
 export type { StudyGuide, CreateStudyGuideOptions } from './studyguide/create-studyguide.js';
 
+export { createPracticeProblems } from './practice-problems/create-practice-problems.js';
+export type { PracticeProblem, CreatePracticeProblemsOptions } from './practice-problems/create-practice-problems.js';
+
 export type { Difficulty } from './shared/schema.js';
 
 export { EduSDKError, InvalidInputError } from './errors/errors.js';
