@@ -1,0 +1,112 @@
+.edu-flashcards {
+    --edu-flashcards-background: #ffffff;
+    --edu-flashcards-foreground: #171717;
+    --edu-flashcards-muted: #737373;
+    --edu-flashcards-border: #e5e5e5;
+    --edu-flashcards-button-background: #ffffff;
+    --edu-flashcards-button-hover: #f5f5f5;
+    --edu-flashcards-radius: 0.75rem;
+    --edu-flashcards-card-min-height: 12rem;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: var(--edu-flashcards-foreground);
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.edu-flashcards *,
+.edu-flashcards *::before,
+.edu-flashcards *::after {
+    box-sizing: border-box;
+}
+
+.edu-flashcards__counter {
+    color: var(--edu-flashcards-muted);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: center;
+}
+
+.edu-flashcards__card {
+    width: 100%;
+    min-height: var(--edu-flashcards-card-min-height);
+    padding: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--edu-flashcards-border);
+    border-radius: var(--edu-flashcards-radius);
+
+    background: var(--edu-flashcards-background);
+    color: var(--edu-flashcards-foreground);
+
+    font: inherit;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    text-align: center;
+
+    cursor: pointer;
+
+    transition:
+        border-color 150ms ease,
+        box-shadow 150ms ease,
+        transform 150ms ease;
+}
+
+.edu-flashcards__card:hover {
+    border-color: #cfcfcf;
+}
+
+.edu-flashcards__card:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+}
+
+.edu-flashcards__card:active {
+    transform: scale(0.995);
+}
+
+.edu-flashcards__controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.edu-flashcards__button {
+    padding: 0.625rem 1rem;
+
+    border: 1px solid var(--edu-flashcards-border);
+    border-radius: calc(var(--edu-flashcards-radius) * 0.75);
+
+    background: var(--edu-flashcards-button-background);
+    color: var(--edu-flashcards-foreground);
+
+    font: inherit;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+
+    cursor: pointer;
+
+    transition:
+        background 150ms ease,
+        opacity 150ms ease;
+}
+
+.edu-flashcards__button:hover:not(:disabled) {
+    background: var(--edu-flashcards-button-hover);
+}
+
+.edu-flashcards__button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.edu-flashcards__button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}

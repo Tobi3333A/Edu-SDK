@@ -1,11 +1,11 @@
 {
-  "name": "@edu-sdk-monorepo",
+  "name": "edu-sdk-monorepo",
   "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@10.33.0",
   "scripts": {
-    "build": "pnpm -r run build",
-    "test": "pnpm -r run test",
-    "test:run": "pnpm -r run test:run"
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "test:run": "pnpm -r test:run"
   }
 }
