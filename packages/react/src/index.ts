@@ -6,3 +6,6 @@ export { Quiz } from './quiz/quiz.js';
 
 export type { StudyGuideProps, StudyGuideClassNames } from './studyguide/studyguide.js';
 export { StudyGuide } from './studyguide/studyguide.js';
+
+export type { PracticeProblemsProps, PracticeProblemsClassNames } from './practice-problems/practice-problem.js';
+export { PracticeProblems } from './practice-problems/practice-problem.js';

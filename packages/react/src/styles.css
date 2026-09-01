@@ -366,3 +366,134 @@
     padding-left: 0.25rem;
     line-height: 1.6;
 }
+
+
+.edu-practice-problems {
+    --edu-practice-background: #ffffff;
+    --edu-practice-foreground: #171717;
+    --edu-practice-muted: #737373;
+    --edu-practice-border: #e5e5e5;
+
+    --edu-practice-hint-background: #fffbeb;
+    --edu-practice-hint-border: #facc15;
+
+    --edu-practice-answer-background: #f0fdf4;
+    --edu-practice-answer-border: #86efac;
+
+    --edu-practice-solution-background: #f8fafc;
+    --edu-practice-solution-border: #cbd5e1;
+
+    --edu-practice-radius: 0.75rem;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    color: var(--edu-practice-foreground);
+    font-family: inherit;
+}
+
+.edu-practice-problems *,
+.edu-practice-problems *::before,
+.edu-practice-problems *::after {
+    box-sizing: border-box;
+}
+
+.edu-practice-problems__progress {
+    color: var(--edu-practice-muted);
+    font-size: 0.875rem;
+}
+
+.edu-practice-problems__problem {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.edu-practice-problems__question {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.6;
+}
+
+.edu-practice-problems__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.edu-practice-problems__hint-button,
+.edu-practice-problems__answer-button,
+.edu-practice-problems__solution-button,
+.edu-practice-problems__previous,
+.edu-practice-problems__next {
+    padding: 0.625rem 1rem;
+
+    border: 1px solid var(--edu-practice-border);
+    border-radius: calc(var(--edu-practice-radius) * 0.75);
+
+    background: var(--edu-practice-background);
+    color: var(--edu-practice-foreground);
+
+    font: inherit;
+    font-size: 0.875rem;
+
+    cursor: pointer;
+
+    transition:
+        background 150ms ease,
+        opacity 150ms ease;
+}
+
+.edu-practice-problems__hint-button:hover,
+.edu-practice-problems__answer-button:hover,
+.edu-practice-problems__solution-button:hover,
+.edu-practice-problems__previous:hover:not(:disabled),
+.edu-practice-problems__next:hover:not(:disabled) {
+    background: #f5f5f5;
+}
+
+.edu-practice-problems__hint-button:focus-visible,
+.edu-practice-problems__answer-button:focus-visible,
+.edu-practice-problems__solution-button:focus-visible,
+.edu-practice-problems__previous:focus-visible,
+.edu-practice-problems__next:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.edu-practice-problems__hint,
+.edu-practice-problems__answer,
+.edu-practice-problems__solution {
+    padding: 1rem;
+    border-radius: var(--edu-practice-radius);
+    line-height: 1.6;
+}
+
+.edu-practice-problems__hint {
+    border: 1px solid var(--edu-practice-hint-border);
+    background: var(--edu-practice-hint-background);
+}
+
+.edu-practice-problems__answer {
+    border: 1px solid var(--edu-practice-answer-border);
+    background: var(--edu-practice-answer-background);
+}
+
+.edu-practice-problems__solution {
+    border: 1px solid var(--edu-practice-solution-border);
+    background: var(--edu-practice-solution-background);
+}
+
+.edu-practice-problems__controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.edu-practice-problems__previous:disabled,
+.edu-practice-problems__next:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
