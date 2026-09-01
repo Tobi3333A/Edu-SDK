@@ -6,7 +6,9 @@ settings:
 
 importers:
 
-  .:
+  .: {}
+
+  packages/core:
     dependencies:
       '@ai-sdk/openai':
         specifier: ^4.0.52
