@@ -3,3 +3,6 @@ export { Flashcards } from './flashcards/flashcards.js';
 
 export type { QuizProps, QuizClassNames } from './quiz/quiz.js';
 export { Quiz } from './quiz/quiz.js';
+
+export type { StudyGuideProps, StudyGuideClassNames } from './studyguide/studyguide.js';
+export { StudyGuide } from './studyguide/studyguide.js';

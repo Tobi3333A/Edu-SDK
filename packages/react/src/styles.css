@@ -271,3 +271,98 @@
     font-weight: 600;
     text-align: center;
 }
+
+
+.edu-study-guide {
+    --edu-study-guide-background: #ffffff;
+    --edu-study-guide-foreground: #171717;
+    --edu-study-guide-muted: #737373;
+    --edu-study-guide-border: #e5e5e5;
+    --edu-study-guide-card-background: #fafafa;
+    --edu-study-guide-radius: 0.75rem;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    color: var(--edu-study-guide-foreground);
+    font-family: inherit;
+}
+
+.edu-study-guide *,
+.edu-study-guide *::before,
+.edu-study-guide *::after {
+    box-sizing: border-box;
+}
+
+.edu-study-guide__title {
+    margin: 0;
+
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.edu-study-guide__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.edu-study-guide__section-title {
+    margin: 0;
+
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.edu-study-guide__summary {
+    margin: 0;
+
+    color: var(--edu-study-guide-foreground);
+    line-height: 1.7;
+}
+
+.edu-study-guide__key-concepts {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.edu-study-guide__key-concept {
+    padding: 1rem;
+
+    border: 1px solid var(--edu-study-guide-border);
+    border-radius: var(--edu-study-guide-radius);
+
+    background: var(--edu-study-guide-card-background);
+}
+
+.edu-study-guide__concept-name {
+    margin: 0 0 0.5rem 0;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.edu-study-guide__concept-explanation {
+    margin: 0;
+
+    color: var(--edu-study-guide-muted);
+    line-height: 1.6;
+}
+
+.edu-study-guide__review-questions {
+    margin: 0;
+    padding-left: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.edu-study-guide__review-question {
+    padding-left: 0.25rem;
+    line-height: 1.6;
+}
