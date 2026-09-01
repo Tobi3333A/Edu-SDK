@@ -1,2 +1,5 @@
-export type { FlashcardsProps } from './flashcards/flashcards.js';
+export type { FlashcardsProps, FlashcardsClassNames } from './flashcards/flashcards.js';
 export { Flashcards } from './flashcards/flashcards.js';
+
+export type { QuizProps, QuizClassNames } from './quiz/quiz.js';
+export { Quiz } from './quiz/quiz.js';

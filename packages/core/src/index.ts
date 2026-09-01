@@ -5,7 +5,7 @@ export { createNote } from './notes/create-note.js';
 export type { Note, CreateNoteOptions } from './notes/create-note.js';
 
 export { createQuiz } from './quizzes/create-quiz.js';
-export type { Quiz, QuizQuestion, CreateQuizOptions } from './quizzes/create-quiz.js';
+export type { QuizQuestion, CreateQuizOptions } from './quizzes/create-quiz.js';
 
 export { createStudyGuide } from './studyguide/create-studyguide.js';
 export type { StudyGuide, CreateStudyGuideOptions } from './studyguide/create-studyguide.js';

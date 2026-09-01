@@ -19,7 +19,7 @@ function createQuizQuestionSchema(numOfOptions: number) {
 }
 
 export type QuizQuestion = z.infer<ReturnType<typeof createQuizQuestionSchema>>;
-export type Quiz = QuizQuestion[];
+type Quiz = QuizQuestion[];
 
 export async function createQuiz(options: CreateQuizOptions): Promise<Quiz> {
     const result = createQuizOptionsSchema.safeParse(options);

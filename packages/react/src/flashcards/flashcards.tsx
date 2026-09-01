@@ -2,6 +2,7 @@
 
 import type { Flashcard } from "edu-sdk";
 import { useState } from "react";
+import { cn } from "../utils/index.js";
 
 export type FlashcardsClassNames = {
     root?: string;
@@ -17,10 +18,6 @@ export type FlashcardsProps = {
     className?: string;
     classNames?: FlashcardsClassNames
 };
-
-function cn(...classes: Array<string | undefined>) {
-  return classes.filter(Boolean).join(" ");
-}
 
 export function Flashcards({ flashcards, className, classNames }: FlashcardsProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
