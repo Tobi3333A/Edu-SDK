@@ -1,6 +1,12 @@
 {
     "name": "edu-sdk",
     "version": "0.0.1",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Tobi3333A/edu-sdk.git",
+        "directory": "packages/core"
+    },
     "type": "module",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",

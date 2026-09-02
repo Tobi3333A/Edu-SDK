@@ -72,3 +72,8 @@ pnpm dev:web
 - Docs: run `pnpm dev:web` and open the local site
 - GitHub: [Tobi3333A/edu-sdk](https://github.com/Tobi3333A/edu-sdk)
 - Package docs: [`edu-sdk`](./packages/core/README.md) · [`@edu-sdk/react`](./packages/react/README.md)
+- [Contributing](./CONTRIBUTING.md)
+
+## License
+
+MIT © 2026 Oluwatobiloba Adejumo. See [LICENSE](./LICENSE).

@@ -2,6 +2,7 @@
   "name": "edu-sdk-monorepo",
   "version": "0.0.1",
   "private": true,
+  "license": "MIT",
   "packageManager": "pnpm@10.33.0",
   "scripts": {
     "build": "pnpm -r build",

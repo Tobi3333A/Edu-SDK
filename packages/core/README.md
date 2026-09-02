@@ -69,3 +69,7 @@ For React components that render these outputs, use [`@edu-sdk/react`](../react/
 
 - [Monorepo README](../../README.md)
 - [GitHub](https://github.com/Tobi3333A/edu-sdk)
+
+## License
+
+MIT © 2026 Oluwatobiloba Adejumo. See [LICENSE](../../LICENSE).
