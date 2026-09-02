@@ -1,0 +1,34 @@
+---
+title: Error handling
+description: InvalidInputError and what the SDK does not wrap.
+---
+
+`edu-sdk` validates options with Zod before calling the model. Bad options throw `InvalidInputError`, which extends `EduSDKError`.
+
+```ts
+import { createQuiz, InvalidInputError } from "edu-sdk";
+
+try {
+  const quiz = await createQuiz({
+    model: "google/gemini-3.6-flash",
+    content,
+    count: 10
+  });
+} catch (error) {
+  if (error instanceof InvalidInputError) {
+    // Empty content, count of 0, invalid difficulty, numOfOptions < 2, ...
+    console.error(error.message);
+  } else {
+    throw error;
+  }
+}
+```
+
+Examples of invalid input:
+
+- empty `content`
+- `count` of `0` or a non-integer
+- `difficulty` other than `"easy" | "medium" | "hard"`
+- `numOfOptions` less than `2`
+
+Model, network, and generation failures come from the AI SDK. They are not wrapped in `EduSDKError`.

@@ -1,0 +1,58 @@
+---
+title: createPracticeProblems
+description: Generate practice problems from educational content.
+---
+
+Generates practice problems from educational content. Each problem includes a hint, an answer, and a worked solution.
+
+## Usage
+
+```ts
+import { createPracticeProblems } from "edu-sdk";
+
+const problems = await createPracticeProblems({
+  model: "google/gemini-3.6-flash",
+  content,
+  count: 5,
+  difficulty: "medium"
+});
+```
+
+## Options
+
+| Option | Type | Required | Default |
+| --- | --- | --- | --- |
+| `model` | `string \| LanguageModel` | Yes | — |
+| `content` | `string` | Yes | — |
+| `count` | `number` (positive int) | Yes | — |
+| `difficulty` | `"easy" \| "medium" \| "hard"` | No | `"medium"` |
+
+## Returns
+
+`Promise<PracticeProblem[]>`
+
+Each problem contains:
+
+```ts
+{
+  question: string;
+  hint: string;
+  answer: string;
+  solution: string;
+}
+```
+
+## Example
+
+```ts
+import { createPracticeProblems } from "edu-sdk";
+
+const problems = await createPracticeProblems({
+  model: "google/gemini-3.6-flash",
+  content: worksheetNotes,
+  count: 6,
+  difficulty: "hard"
+});
+```
+
+Render with [`<PracticeProblems />`](/docs/react/practice-problems).

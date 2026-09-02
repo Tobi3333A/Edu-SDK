@@ -1,0 +1,47 @@
+---
+title: createNote
+description: Generate a Markdown note from educational content.
+---
+
+Generates a Markdown note from educational content. There is no React component for notes.
+
+## Usage
+
+```ts
+import { createNote } from "edu-sdk";
+
+const note = await createNote({
+  model: "google/gemini-3.6-flash",
+  content,
+  difficulty: "medium",
+  length: "medium"
+});
+```
+
+## Options
+
+| Option | Type | Required | Default |
+| --- | --- | --- | --- |
+| `model` | `string \| LanguageModel` | Yes | — |
+| `content` | `string` | Yes | — |
+| `difficulty` | `"easy" \| "medium" \| "hard"` | No | `"medium"` |
+| `length` | `"short" \| "medium" \| "long"` | No | `"medium"` |
+
+## Returns
+
+`Promise<string>`
+
+The string is Markdown: headings for sections, bold for important terms.
+
+## Example
+
+```ts
+import { createNote } from "edu-sdk";
+
+const note = await createNote({
+  model: "google/gemini-3.6-flash",
+  content: lectureTranscript,
+  difficulty: "hard",
+  length: "long"
+});
+```

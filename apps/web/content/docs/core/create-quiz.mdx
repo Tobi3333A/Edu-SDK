@@ -1,0 +1,61 @@
+---
+title: createQuiz
+description: Generate a multiple-choice quiz from educational content.
+---
+
+Generates a multiple-choice quiz from educational content.
+
+## Usage
+
+```ts
+import { createQuiz } from "edu-sdk";
+
+const quiz = await createQuiz({
+  model: "google/gemini-3.6-flash",
+  content,
+  count: 10,
+  difficulty: "hard",
+  numOfOptions: 4
+});
+```
+
+## Options
+
+| Option | Type | Required | Default |
+| --- | --- | --- | --- |
+| `model` | `string \| LanguageModel` | Yes | — |
+| `content` | `string` | Yes | — |
+| `count` | `number` (positive int) | Yes | — |
+| `difficulty` | `"easy" \| "medium" \| "hard"` | No | `"medium"` |
+| `numOfOptions` | `number` (min 2) | No | `4` |
+
+## Returns
+
+`Promise<QuizQuestion[]>`
+
+Each question contains:
+
+```ts
+{
+  question: string;
+  options: string[];
+  correctAnswer: number;
+}
+```
+
+`correctAnswer` is zero-indexed.
+
+## Example
+
+```ts
+import { createQuiz } from "edu-sdk";
+
+const quiz = await createQuiz({
+  model: "google/gemini-3.6-flash",
+  content: notes,
+  count: 10,
+  difficulty: "medium"
+});
+```
+
+Render with [`<Quiz />`](/docs/react/quiz).
