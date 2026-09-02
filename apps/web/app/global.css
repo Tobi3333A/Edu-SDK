@@ -2,6 +2,45 @@
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 
+:root {
+  --color-fd-background: hsl(40, 33%, 96%);
+  --color-fd-foreground: hsl(30, 10%, 10%);
+  --color-fd-muted: hsl(36, 25%, 92%);
+  --color-fd-muted-foreground: hsl(30, 8%, 38%);
+  --color-fd-popover: hsl(40, 30%, 98%);
+  --color-fd-popover-foreground: hsl(30, 10%, 10%);
+  --color-fd-card: hsl(40, 30%, 94%);
+  --color-fd-card-foreground: hsl(30, 10%, 10%);
+  --color-fd-border: hsl(35, 20%, 82%);
+  --color-fd-primary: hsl(32, 95%, 44%);
+  --color-fd-primary-foreground: hsl(40, 33%, 98%);
+  --color-fd-secondary: hsl(36, 22%, 90%);
+  --color-fd-secondary-foreground: hsl(30, 10%, 10%);
+  --color-fd-accent: hsl(36, 30%, 88%);
+  --color-fd-accent-foreground: hsl(30, 10%, 10%);
+  --color-fd-ring: hsl(32, 95%, 44%);
+}
+
+.dark {
+  --color-fd-background: hsl(30, 12%, 8%);
+  --color-fd-foreground: hsl(40, 20%, 93%);
+  --color-fd-muted: hsl(30, 10%, 14%);
+  --color-fd-muted-foreground: hsl(40, 10%, 70%);
+  --color-fd-popover: hsl(30, 10%, 11%);
+  --color-fd-popover-foreground: hsl(40, 20%, 93%);
+  --color-fd-card: hsl(30, 10%, 11%);
+  --color-fd-card-foreground: hsl(40, 20%, 93%);
+  --color-fd-border: hsl(30, 8%, 22%);
+  --color-fd-secondary: hsl(30, 10%, 16%);
+  --color-fd-secondary-foreground: hsl(40, 20%, 93%);
+  --color-fd-accent: hsl(30, 10%, 18%);
+  --color-fd-accent-foreground: hsl(40, 20%, 93%);
+}
+
+.prose a:not([data-card]) {
+  text-decoration-color: currentColor;
+}
+
 html {
   scrollbar-gutter: stable;
 }

@@ -12,6 +12,11 @@ export function baseOptions(): BaseLayoutProps {
         url: '/docs',
         active: 'nested-url',
       },
+      {
+        type: 'button',
+        text: 'Get started',
+        url: '/docs/getting-started/installation',
+      },
     ],
   };
 }

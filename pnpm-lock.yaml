@@ -44,6 +44,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@edu-sdk/react':
+        specifier: workspace:*
+        version: link:../../packages/react
       cnfast:
         specifier: ^0.1.0
         version: 0.1.0
