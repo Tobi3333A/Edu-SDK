@@ -1,0 +1,42 @@
+---
+title: Quick Start
+description: Generate a quiz and render it with React.
+---
+
+Generate questions with `edu-sdk`, then pass them to `<Quiz />`.
+
+## Generate
+
+```ts
+import { createQuiz } from "edu-sdk";
+
+const quiz = await createQuiz({
+  model: "google/gemini-3.6-flash",
+  content,
+  count: 10,
+  difficulty: "medium"
+});
+```
+
+`createQuiz` returns `Promise<QuizQuestion[]>`. Each question looks like:
+
+```ts
+{
+  question: string;
+  options: string[];
+  correctAnswer: number; // zero-indexed
+}
+```
+
+## Render
+
+```tsx
+import { Quiz } from "@edu-sdk/react";
+import "@edu-sdk/react/styles.css";
+
+<Quiz questions={quiz} />
+```
+
+Import `styles.css` once in your app, not on every page.
+
+See [Core](/docs/core) and [React](/docs/react) for the rest of the APIs.

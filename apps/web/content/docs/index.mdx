@@ -1,0 +1,21 @@
+---
+title: Edu SDK
+description: Building blocks for AI-powered learning experiences.
+---
+
+Edu SDK is two packages that work together:
+
+- **`edu-sdk`** — generate learning materials from content with a language model.
+- **`@edu-sdk/react`** — render that data as UI.
+
+| Generation | UI |
+| --- | --- |
+| `createFlashcards()` | `<Flashcards />` |
+| `createQuiz()` | `<Quiz />` |
+| `createStudyGuide()` | `<StudyGuide />` |
+| `createPracticeProblems()` | `<PracticeProblems />` |
+| `createNote()` | — |
+
+`createNote()` returns Markdown. It has no React component.
+
+Start with [Installation](/docs/getting-started/installation), then [Quick Start](/docs/getting-started/quick-start) to generate a quiz and render it.

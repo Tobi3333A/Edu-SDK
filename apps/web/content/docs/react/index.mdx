@@ -1,0 +1,23 @@
+---
+title: React
+description: UI components in the @edu-sdk/react package.
+---
+
+`@edu-sdk/react` renders data produced by `edu-sdk`.
+
+| Component | Data |
+| --- | --- |
+| `<Flashcards />` | `createFlashcards()` |
+| `<Quiz />` | `createQuiz()` |
+| `<StudyGuide />` | `createStudyGuide()` |
+| `<PracticeProblems />` | `createPracticeProblems()` |
+
+There is no component for `createNote()`.
+
+Styling has three levels:
+
+1. Import `@edu-sdk/react/styles.css` for the defaults.
+2. Pass `className` / `classNames` to override parts of a component.
+3. Set CSS variables (for example `--edu-quiz-background`) to theme the defaults.
+
+See [Quick Start](/docs/getting-started/quick-start) for `<Quiz />`.
