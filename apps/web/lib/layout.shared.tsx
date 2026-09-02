@@ -12,6 +12,7 @@ export function baseOptions(): BaseLayoutProps {
         </>
       ),
     },
+    githubUrl: 'https://github.com/Tobi3333A/edu-sdk',
     links: [
       {
         text: 'Docs',
@@ -19,10 +20,10 @@ export function baseOptions(): BaseLayoutProps {
         active: 'nested-url',
       },
       {
-        type: 'button',
         text: 'Get started',
         url: '/docs/getting-started/installation',
-      },
+        active: 'none',
+      }
     ],
   };
 }
