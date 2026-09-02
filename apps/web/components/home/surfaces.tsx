@@ -29,34 +29,48 @@ const surfaces = [
 
 export function Surfaces() {
   return (
-    <section className="space-y-4">
-      <h2 className="text-2xl font-semibold">Surfaces</h2>
-      <div className="grid gap-3 sm:grid-cols-2">
+    <section className="space-y-8">
+      <div className="mx-auto max-w-2xl space-y-2 text-center">
+        <h2 className="font-display text-3xl font-semibold tracking-tight">
+          Surfaces
+        </h2>
+        <p className="text-fd-muted-foreground text-sm sm:text-base">
+          One create call. One React component. Learning UI you can ship.
+        </p>
+      </div>
+
+      <ul className="border-fd-border divide-fd-border mx-auto max-w-2xl divide-y border-y">
         {surfaces.map((surface) => (
-          <article
-            key={surface.create}
-            className="border-fd-border bg-fd-card rounded-lg border p-4"
-          >
-            <p className="font-mono text-sm">
-              <Link href={surface.createHref} className="hover:underline">
+          <li key={surface.create} className="py-4">
+            <p className="font-mono text-sm sm:text-base">
+              <Link
+                href={surface.createHref}
+                className="hover:text-fd-primary transition-colors hover:underline"
+              >
                 {surface.create}
               </Link>
               <span className="text-fd-muted-foreground"> → </span>
-              <Link href={surface.uiHref} className="hover:underline">
+              <Link
+                href={surface.uiHref}
+                className="hover:text-fd-primary transition-colors hover:underline"
+              >
                 {surface.ui}
               </Link>
             </p>
-          </article>
+          </li>
         ))}
-        <article className="border-fd-border bg-fd-card text-fd-muted-foreground rounded-lg border p-4 sm:col-span-2">
-          <p className="font-mono text-sm">
-            <Link href="/docs/core/create-note" className="hover:underline">
+        <li className="py-4">
+          <p className="text-fd-muted-foreground font-mono text-sm sm:text-base">
+            <Link
+              href="/docs/core/create-note"
+              className="text-fd-foreground hover:text-fd-primary transition-colors hover:underline"
+            >
               createNote()
             </Link>
             <span> → Markdown, no React component</span>
           </p>
-        </article>
-      </div>
+        </li>
+      </ul>
     </section>
   );
 }
