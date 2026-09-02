@@ -8,7 +8,8 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    }
+    },
+    "./styles.css": "./dist/styles.css"
   },
   "files": [
     "dist"
@@ -26,11 +27,12 @@
     "@types/react": "^19",
     "jsdom": "^30.0.1",
     "react": "^19",
+    "shx": "^0.4.0",
     "typescript": "^5",
     "vitest": "^4.1.11"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && shx cp src/styles.css dist/styles.css",
     "test": "vitest",
     "test:run": "vitest run"
   }
