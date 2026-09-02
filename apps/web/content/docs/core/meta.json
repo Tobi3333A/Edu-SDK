@@ -1,0 +1,12 @@
+{
+  "title": "Core",
+  "pages": [
+    "index",
+    "create-flashcards",
+    "create-note",
+    "create-quiz",
+    "create-study-guide",
+    "create-practice-problems"
+  ],
+  "defaultOpen": true
+}

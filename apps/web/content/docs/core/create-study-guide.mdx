@@ -1,0 +1,56 @@
+---
+title: createStudyGuide
+description: Generate a study guide from educational content.
+---
+
+Generates a study guide from educational content: a summary, key concepts, and review questions.
+
+## Usage
+
+```ts
+import { createStudyGuide } from "edu-sdk";
+
+const studyGuide = await createStudyGuide({
+  model: "google/gemini-3.6-flash",
+  content,
+  difficulty: "medium"
+});
+```
+
+## Options
+
+| Option | Type | Required | Default |
+| --- | --- | --- | --- |
+| `model` | `string \| LanguageModel` | Yes | — |
+| `content` | `string` | Yes | — |
+| `difficulty` | `"easy" \| "medium" \| "hard"` | No | `"medium"` |
+
+## Returns
+
+`Promise<StudyGuide>`
+
+```ts
+{
+  title: string;
+  summary: string;
+  keyConcepts: {
+    concept: string;
+    explanation: string;
+  }[];
+  reviewQuestions: string[];
+}
+```
+
+## Example
+
+```ts
+import { createStudyGuide } from "edu-sdk";
+
+const studyGuide = await createStudyGuide({
+  model: "google/gemini-3.6-flash",
+  content: chapterText,
+  difficulty: "easy"
+});
+```
+
+Render with [`<StudyGuide />`](/docs/react/study-guide).

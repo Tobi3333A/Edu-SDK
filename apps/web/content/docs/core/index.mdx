@@ -1,0 +1,18 @@
+---
+title: Core
+description: Generation APIs in the edu-sdk package.
+---
+
+`edu-sdk` generates learning materials from content. Pass a `model` (string ID or AI SDK `LanguageModel`), `content`, and optional `difficulty` (`easy` | `medium` | `hard`).
+
+| Function | Returns |
+| --- | --- |
+| [`createFlashcards()`](/docs/core/create-flashcards) | `Flashcard[]` |
+| [`createNote()`](/docs/core/create-note) | Markdown `string` |
+| [`createQuiz()`](/docs/core/create-quiz) | `QuizQuestion[]` |
+| [`createStudyGuide()`](/docs/core/create-study-guide) | `StudyGuide` |
+| [`createPracticeProblems()`](/docs/core/create-practice-problems) | `PracticeProblem[]` |
+
+Invalid options throw [`InvalidInputError`](/docs/guides/error-handling).
+
+See [Quick Start](/docs/getting-started/quick-start) for a full `createQuiz` example.

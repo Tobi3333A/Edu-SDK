@@ -1,0 +1,61 @@
+---
+title: Styling
+description: Default styles, classNames, and CSS variables.
+---
+
+`@edu-sdk/react` styling has three levels. Use them in this order.
+
+## 1. Import styles.css
+
+Default look:
+
+```tsx
+import "@edu-sdk/react/styles.css";
+```
+
+Import once in your app layout.
+
+## 2. className / classNames
+
+Override parts of a component without replacing the stylesheet:
+
+```tsx
+<Quiz
+  questions={quiz}
+  className="my-quiz"
+  classNames={{
+    question: "my-question",
+    correctOption: "my-correct-answer"
+  }}
+/>
+```
+
+`className` applies to the root. `classNames` targets named parts. See each component page for the keys.
+
+## 3. CSS variables
+
+Theme the defaults by setting variables on the component root class:
+
+```css
+.edu-quiz {
+  --edu-quiz-background: #0a0a0a;
+  --edu-quiz-foreground: #fafafa;
+  --edu-quiz-correct-background: #052e16;
+}
+```
+
+### Flashcards
+
+Set on `.edu-flashcards`: `--edu-flashcards-background`, `--edu-flashcards-foreground`, `--edu-flashcards-muted`, `--edu-flashcards-border`, `--edu-flashcards-button-background`, `--edu-flashcards-button-hover`, `--edu-flashcards-radius`, `--edu-flashcards-card-min-height`.
+
+### Quiz
+
+Set on `.edu-quiz`: `--edu-quiz-background`, `--edu-quiz-foreground`, `--edu-quiz-muted`, `--edu-quiz-border`, `--edu-quiz-option-background`, `--edu-quiz-option-hover`, `--edu-quiz-selected-background`, `--edu-quiz-selected-border`, `--edu-quiz-correct-background`, `--edu-quiz-correct-border`, `--edu-quiz-correct-foreground`, `--edu-quiz-incorrect-background`, `--edu-quiz-incorrect-border`, `--edu-quiz-incorrect-foreground`, `--edu-quiz-radius`.
+
+### Study guide
+
+Set on `.edu-study-guide`: `--edu-study-guide-background`, `--edu-study-guide-foreground`, `--edu-study-guide-muted`, `--edu-study-guide-border`, `--edu-study-guide-card-background`, `--edu-study-guide-radius`.
+
+### Practice problems
+
+Set on `.edu-practice-problems`: `--edu-practice-background`, `--edu-practice-foreground`, `--edu-practice-muted`, `--edu-practice-border`, `--edu-practice-hint-background`, `--edu-practice-hint-border`, `--edu-practice-answer-background`, `--edu-practice-answer-border`, `--edu-practice-solution-background`, `--edu-practice-solution-border`, `--edu-practice-radius`.

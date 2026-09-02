@@ -1,0 +1,34 @@
+---
+title: Installation
+description: Install the Edu SDK packages.
+---
+
+## Core
+
+Install `edu-sdk` when you only need generation:
+
+```bash
+pnpm add edu-sdk
+```
+
+`model` is a string model ID or an AI SDK `LanguageModel` instance.
+
+```ts
+model: "google/gemini-3.6-flash"
+```
+
+## React
+
+Install `@edu-sdk/react` when you need UI. It already depends on `edu-sdk`. React 18 or later is required.
+
+```bash
+pnpm add @edu-sdk/react
+```
+
+Import the default stylesheet once, typically in your root layout:
+
+```tsx
+import "@edu-sdk/react/styles.css";
+```
+
+Then go to [Quick Start](/docs/getting-started/quick-start).

@@ -1,0 +1,56 @@
+---
+title: createFlashcards
+description: Generate flashcards from educational content.
+---
+
+Generates flashcards from educational content.
+
+## Usage
+
+```ts
+import { createFlashcards } from "edu-sdk";
+
+const flashcards = await createFlashcards({
+  model: "google/gemini-3.6-flash",
+  content,
+  count: 10,
+  difficulty: "medium"
+});
+```
+
+## Options
+
+| Option | Type | Required | Default |
+| --- | --- | --- | --- |
+| `model` | `string \| LanguageModel` | Yes | — |
+| `content` | `string` | Yes | — |
+| `count` | `number` (positive int) | Yes | — |
+| `difficulty` | `"easy" \| "medium" \| "hard"` | No | `"medium"` |
+
+## Returns
+
+`Promise<Flashcard[]>`
+
+Each flashcard contains:
+
+```ts
+{
+  front: string;
+  back: string;
+}
+```
+
+## Example
+
+```ts
+import { createFlashcards } from "edu-sdk";
+
+const flashcards = await createFlashcards({
+  model: "google/gemini-3.6-flash",
+  content: notes,
+  count: 8,
+  difficulty: "easy"
+});
+```
+
+Render with [`<Flashcards />`](/docs/react/flashcards).

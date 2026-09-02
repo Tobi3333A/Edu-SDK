@@ -6,6 +6,7 @@
   "scripts": {
     "build": "pnpm -r build",
     "test": "pnpm -r test",
-    "test:run": "pnpm -r test:run"
+    "test:run": "pnpm -r test:run",
+    "dev:web": "pnpm --filter web dev"
   }
 }

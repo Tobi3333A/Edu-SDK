@@ -1,0 +1,12 @@
+{
+  "title": "React",
+  "pages": [
+    "index",
+    "flashcards",
+    "quiz",
+    "study-guide",
+    "practice-problems",
+    "styling"
+  ],
+  "defaultOpen": true
+}
