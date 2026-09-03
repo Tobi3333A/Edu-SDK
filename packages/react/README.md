@@ -72,7 +72,7 @@ Every component accepts `className` and a `classNames` object for targeting inne
 
 - [`edu-sdk` README](../core/README.md)
 - [Monorepo README](../../README.md)
-- [GitHub](https://github.com/Tobi3333A/edu-sdk)
+- [GitHub](https://github.com/klawrodev/edu-sdk)
 
 ## License
 

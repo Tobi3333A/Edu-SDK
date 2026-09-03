@@ -4,7 +4,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Tobi3333A/edu-sdk.git",
+        "url": "git+https://github.com/klawrodev/edu-sdk.git",
         "directory": "packages/core"
     },
     "type": "module",
