@@ -1,11 +1,16 @@
 import { RootProvider } from 'fumadocs-ui/provider/next';
+import { Analytics } from '@vercel/analytics/react';
 import './global.css';
 import '@edu-sdk/react/styles.css';
 import { IBM_Plex_Sans, Newsreader } from 'next/font/google';
-import { ogImage } from '@/lib/shared';
+import { appName, ogImage } from '@/lib/shared';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  title: {
+    default: appName,
+    template: `%s · ${appName}`,
+  },
   openGraph: {
     images: [ogImage],
   },
@@ -36,6 +41,7 @@ export default function Layout({ children }: LayoutProps<'/'>) {
     >
       <body className="flex min-h-screen flex-col">
         <RootProvider>{children}</RootProvider>
+        <Analytics />
       </body>
     </html>
   );

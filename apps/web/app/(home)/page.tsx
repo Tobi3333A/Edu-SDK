@@ -4,8 +4,10 @@ import { HomeFooter } from '@/components/home/home-footer';
 import { Surfaces } from '@/components/home/surfaces';
 
 export const metadata = {
-  title: 'Edu SDK',
-  description: 'Turn any content into interactive learning surfaces.',
+  title: {
+    absolute: 'Edu SDK · The TypeScript SDK for AI-powered learning',
+  },
+  description: 'Generate learning materials from any content, then render them as UI.',
 };
 
 export default function HomePage() {
