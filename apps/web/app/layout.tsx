@@ -2,6 +2,18 @@ import { RootProvider } from 'fumadocs-ui/provider/next';
 import './global.css';
 import '@edu-sdk/react/styles.css';
 import { IBM_Plex_Sans, Newsreader } from 'next/font/google';
+import { ogImage } from '@/lib/shared';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  openGraph: {
+    images: [ogImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [ogImage],
+  },
+};
 
 const plexSans = IBM_Plex_Sans({
   subsets: ['latin'],
