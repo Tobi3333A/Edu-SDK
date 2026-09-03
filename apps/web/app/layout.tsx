@@ -3,14 +3,17 @@ import { Analytics } from '@vercel/analytics/react';
 import './global.css';
 import '@edu-sdk/react/styles.css';
 import { IBM_Plex_Sans, Newsreader } from 'next/font/google';
-import { appName, ogImage } from '@/lib/shared';
+import { appName, ogImage, siteUrl } from '@/lib/shared';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: appName,
     template: `%s · ${appName}`,
   },
+  description:
+    'Documentation and resources for Edu SDK — build educational experiences with ease.',
   openGraph: {
     images: [ogImage],
   },
